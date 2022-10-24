@@ -257,14 +257,22 @@ def insert_segmentation_descriptor_request_data_encode(bitarray_data, event_obje
     position += manipulate_bits(bitarray_data, event_object["segmentation_upid_length"], position, bytes=1)
     position += manipulate_bits(bitarray_data, event_object["segmentation_upid"], position, bytes=event_object["segmentation_upid_length"])
     position += manipulate_bits(bitarray_data, event_object["segmentation_type_id"]["decimal"], position, bytes=1)
-    position += manipulate_bits(bitarray_data, event_object["segment_num"], position, bytes=1)
-    position += manipulate_bits(bitarray_data, event_object["segments_expected"], position, bytes=1)
-    position += manipulate_bits(bitarray_data, event_object["duration_extension_frames"], position, bytes=1)
-    position += manipulate_bits(bitarray_data, event_object["delivery_not_restricted_flag"], position, bytes=1)
-    position += manipulate_bits(bitarray_data, event_object["web_delivery_allowed_flag"], position, bytes=1)
-    position += manipulate_bits(bitarray_data, event_object["no_regional_blackout_flag"], position, bytes=1)
-    position += manipulate_bits(bitarray_data, event_object["archive_allowed_flag"], position, bytes=1)
-    position += manipulate_bits(bitarray_data, event_object["device_restrictions"], position, bytes=1)
+    if "segment_num" in event_object.keys():
+        position += manipulate_bits(bitarray_data, event_object["segment_num"], position, bytes=1)
+    if "segments_expected" in event_object.keys():
+        position += manipulate_bits(bitarray_data, event_object["segments_expected"], position, bytes=1)
+    if "duration_extension_frames" in event_object.keys():
+        position += manipulate_bits(bitarray_data, event_object["duration_extension_frames"], position, bytes=1)
+    if "delivery_not_restricted_flag" in event_object.keys():
+        position += manipulate_bits(bitarray_data, event_object["delivery_not_restricted_flag"], position, bytes=1)
+    if "web_delivery_allowed_flag" in event_object.keys():
+        position += manipulate_bits(bitarray_data, event_object["web_delivery_allowed_flag"], position, bytes=1)
+    if "no_regional_blackout_flag" in event_object.keys():
+        position += manipulate_bits(bitarray_data, event_object["no_regional_blackout_flag"], position, bytes=1)
+    if "archive_allowed_flag" in event_object.keys():
+        position += manipulate_bits(bitarray_data, event_object["archive_allowed_flag"], position, bytes=1)
+    if "device_restrictions" in event_object.keys():
+        position += manipulate_bits(bitarray_data, event_object["device_restrictions"], position, bytes=1)
     if "insert_sub_segment_info" in event_object.keys():
         position += manipulate_bits(bitarray_data, event_object["insert_sub_segment_info"], position, bytes=1)
     if "sub_segment_num" in event_object.keys():
